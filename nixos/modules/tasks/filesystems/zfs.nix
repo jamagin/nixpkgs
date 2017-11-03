@@ -354,7 +354,7 @@ in
           nameValuePair "zfs-import-${pool}" {
             description = "Import ZFS pool \"${pool}\"";
             requires = [ "systemd-udev-settle.service" ];
-            after = [ "systemd-udev-settle.service" "systemd-modules-load.service" ];
+            after = [ "systemd-udev-settle.service" "systemd-modules-load.service" "cryptsetup.target" ];
             wantedBy = (getPoolMounts pool) ++ [ "local-fs.target" ];
             before = (getPoolMounts pool) ++ [ "local-fs.target" ];
             unitConfig = {
